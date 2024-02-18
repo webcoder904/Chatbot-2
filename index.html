@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sujal Chatbot</title>
+<style>
+:root {
+  --primary-color: #FF5722; /* Deep Orange */
+  --secondary-color: #FFFFFF; /* White */
+  --tertiary-color: #4CAF50; /* Green */
+  --background-color: #f1f1f1; /* Light Gray */
+  --text-color: #333333; /* Dark Gray */
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --animation-duration: 0.3s; /* Animation duration */
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://raw.githubusercontent.com/Sujaltalreja04/CHATBOT/main/26160955.jpg');
+  background-size: cover;
+  overflow: hidden;
+}
+
+.chat-container {
+  width: 400px;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px var(--shadow-color);
+}
+
+.chat-header {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 15px;
+  text-align: center;
+}
+
+.chat-body {
+  padding: 15px;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.chat-message {
+  background-color: var(--primary-color);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color var(--animation-duration) ease;
+  animation: floatAnimation var(--animation-duration) infinite alternate ease-in-out;
+}
+
+.chat-message:hover {
+  background-color: var(--tertiary-color);
+  animation-play-state: paused; /* Pause the animation on hover */
+}
+
+.user-message {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  text-align: right;
+}
+
+.bot-message {
+  background-color: var(--tertiary-color);
+  color: var(--secondary-color);
+}
+
+.chat-input {
+  width: calc(100% - 30px);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 0 15px 15px;
+  font-size: 16px;
+}
+
+.send-button {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color var(--animation-duration) ease;
+}
+
+.send-button:hover {
+  background-color: var(--tertiary-color);
+}
+
+/* Animation for smoothness */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: var(--animation-duration);
+}
+
+/* Advanced animation for chat message */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.chat-message.bot-message {
+  animation: slideInRight var(--animation-duration) ease;
+}
+
+/* Floating animation for chat message */
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+:root {
+  --primary-color: #FF5722;
+  --secondary-color: #FFFFFF;
+  --tertiary-color: #4CAF50;
+  --background-color: #f1f1f1;
+  --text-color: #333333;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --animation-duration: 0.3s;
+  --font-family: 'Roboto', sans-serif; /* New variable for font family */
+}
+
+body {
+  font-family: var(--font-family); /* Use the new variable */
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://raw.githubusercontent.com/Sujaltalreja04/CHATBOT/main/26160955.jpg');
+  background-size: cover;
+  overflow: hidden;
+  transition: background-color var(--animation-duration) ease; /* Add transition for smooth background color change */
+}
+
+.chat-container {
+  width: 400px;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px var(--shadow-color);
+  transition: box-shadow var(--animation-duration) ease; /* Add transition for smooth shadow change */
+}
+
+.chat-header {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 15px;
+  text-align: center;
+  font-weight: bold; /* Make the header text bold */
+}
+
+.chat-body {
+  padding: 15px;
+  height: 300px;
+  overflow-y: scroll;
+  scrollbar-width: thin; /* Make the scrollbar thinner */
+  scrollbar-color: var(--primary-color) var(--background-color); /* Change the scrollbar color */
+}
+
+/* Other styles remain the same */
+
+/* Add a media query for responsive design */
+@media (max-width: 600px) {
+  .chat-container {
+    width: 100%;
+  }
+}
+
+</style>
+
+</head>
+<body>
+<div class="chat-container fade-in">
+  <div class="chat-header">Sujal Chatobt </div>
+  <div class="chat-body" id="chat-body">
+    <div class="chat-message bot-message" onclick="selectQuestion(1)">1. What is your name</div>
+    <div class="chat-message bot-message" onclick="selectQuestion(2)">2. Which semester are you in</div>
+    <div class="chat-message bot-message" onclick="selectQuestion(3)">3. What skills do you have</div>
+    <div class="chat-message bot-message" onclick="selectQuestion(4)">4. Hi, Hello, Namaste</div>
+    <div class="chat-message bot-message" onclick="selectQuestion(5)">5. Why should we hire you</div>
+    <div class="chat-message bot-message" onclick="window.open('https://www.linkedin.com/in/sujal-kishore-kumar-talreja-65975b216', '_blank')">6. Your LinkedIn account</div>
+    <div class="chat-message bot-message" onclick="window.open('https://github.com/Sujaltalreja04', '_blank')">7. Github account project</div>
+  </div>
+  <input type="text" id="user-input" class="chat-input" placeholder="Type your message here...">
+  <button onclick="sendMessage()" class="send-button">Send</button>
+</div>
+
+<script>
+  function sendMessage() {
+    var userInput = document.getElementById("user-input").value;
+    if (userInput.trim() === "") return;
+    
+    appendMessage(userInput, "user");
+    document.getElementById("user-input").value = "";
+    
+    // Bot responses based on user input
+    setTimeout(function() {
+      var response = generateResponse(userInput);
+      appendMessage(response, "bot");
+    }, 500);
+  }
+  
+  function selectQuestion(questionNumber) {
+    var question;
+    switch (questionNumber) {
+        case 1:
+            question = "What is your name";
+            break;
+        case 2:
+            question = "Which semester are you in";
+            break;
+        case 3:
+            question = "What skills do you have";
+            break;
+        case 4:
+            question = "Hi, Hello, Namaste";
+            break;
+        case 5:
+            question = "Why should we hire you";
+            break;
+        case 6:
+            window.open('https://www.linkedin.com/in/sujal-kishore-kumar-talreja-65975b216', '_blank');
+            return;
+        case 7:
+            window.open('https://github.com/Sujaltalreja04', '_blank');
+            return;
+        default:
+            question = "";
+            break;
+    }
+    appendMessage(question, "user");
+
+    // Bot responses based on selected question
+    setTimeout(function () {
+        var response = generateResponse(question);
+        appendMessage(response, "bot");
+    }, 500);
+}
+
+function appendMessage(message, sender) {
+    var chatBody = document.getElementById("chat-body");
+    var messageElement = document.createElement("div");
+    messageElement.textContent = message;
+    messageElement.classList.add("chat-message");
+
+    if (sender === "user") {
+        messageElement.classList.add("user-message");
+    } else {
+        messageElement.classList.add("bot-message");
+    }
+
+    chatBody.appendChild(messageElement);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Function to generate bot response based on user input
+function generateResponse(userInput) {
+    userInput = userInput.toLowerCase();
+    var response = "";
+
+    // Question-Answer pairs
+    switch (true) {
+        case userInput.includes("what is your name"):
+            response = "My name is Sujal Talreja.";
+            break;
+        case userInput.includes("semester"):
+            response = "I am currently in the 4th semester of BSCIT at Ganpat University.";
+            break;
+        case userInput.includes("what skills do you have") || userInput.includes("i have deep proficiency in frontend tools like html, css, js, wordpress") || userInput.includes("javascript"):
+            response = "I have deep proficiency in HTML, CSS, JavaScript, WordPress, XAMPP, Tableau, and Python.";
+            break;
+        case userInput.includes("why should we hire you"):
+            response = "You should hire me because I am hardworking, dedicated, and have a strong proficiency in various technologies. I am eager to learn and contribute positively to your organization.";
+            break;
+        case userInput.includes("hi") || userInput.includes("hello") || userInput.includes("namaste"):
+            response = "Namaste 🙏 How can I assist you today?";
+            break;
+        case userInput.includes("your linkedin account") || userInput.includes("i want linkedin account link") || userInput.includes("www.linkedin.com/in/sujal-kishore-kumar-talreja-65975b216"):
+            response = "www.linkedin.com/in/sujal-kishore-kumar-talreja-65975b216";
+            break;
+        case userInput.includes("github account project") || userInput.includes("i want github account link") || userInput.includes("https://github.com/Sujaltalreja04"):
+            response = '<a href="https://github.com/Sujaltalreja04" target="_blank">https://github.com/Sujaltalreja04</a>';
+            break;
+        default:
+            response = "Sorry, I couldn't understand that. Can you please repeat?";
+            break;
+    }
+
+    return response;
+}
+
+
+</script>
+</body>
+</html>
